@@ -31,11 +31,7 @@ def place_order_cmd(
     price: float = typer.Option(None, "--price", help="Required for LIMIT orders"),
     stop_price: float = typer.Option(None, "--stop-price", help="Required for STOP_MARKET orders"),
 ):
-    """
-    Places an order on the Binance Futures Testnet.
-    """
     try:
-        # 1. Validation
         val_symbol = validate_symbol(symbol)
         val_side = validate_side(side)
         val_type = validate_order_type(order_type)
@@ -43,10 +39,8 @@ def place_order_cmd(
         val_price = validate_price(price, val_type)
         val_stop_price = validate_stop_price(stop_price, val_type)
 
-        # 2. Initialize Client
         client = get_binance_client()
 
-        # 3. Place Order
         response = place_order(
             client=client,
             symbol=val_symbol,
@@ -57,14 +51,12 @@ def place_order_cmd(
             stop_price=val_stop_price
         )
 
-        # 4. Display Result
         console.print(f"\n[bold green]Success![/bold green] Order placed successfully on Binance Futures Testnet.")
         
         table = Table(title="Order Summary", show_header=True, header_style="bold magenta")
         table.add_column("Property", style="cyan")
         table.add_column("Value", style="white")
 
-        # Map response fields safely (accounting for standard and algo orders)
         order_id = str(response.get("orderId", response.get("algoId", "N/A")))
         status = response.get("status", response.get("algoStatus", "N/A"))
         executed_qty = str(response.get("executedQty", "0"))

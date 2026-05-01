@@ -11,12 +11,7 @@ def place_order(
     price: float = None,
     stop_price: float = None
 ) -> dict:
-    """
-    Places an order on the Binance Futures Testnet.
-    Handles MARKET, LIMIT, and STOP_MARKET orders.
-    """
     try:
-        # Prepare the base order parameters
         params = {
             "symbol": symbol,
             "side": side,
