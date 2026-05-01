@@ -24,11 +24,12 @@ A Python-based CLI trading bot that interacts with the Binance Futures Testnet (
    ```
 
 4. **Environment Variables**
-   - Copy the example environment file:
-     ```bash
-     cp .env.example .env
-     ```
-   - Edit `.env` and insert your Binance Futures Testnet API Key and Secret.
+   Create a `.env` file in the root directory:
+   ```env
+   BINANCE_API_KEY=your_api_key
+   BINANCE_API_SECRET=your_secret_key
+   # The bot is configured to automatically route to the testnet via the python-binance library
+   ```
 
 ## How to Run Examples
 
@@ -50,9 +51,27 @@ python cli.py place-order --symbol BTCUSDT --side SELL --type LIMIT --quantity 0
 
 ### 3. Stop-Market Order (Bonus)
 Requires `--stop-price`.
-*Note: Binance Futures Testnet requires orders to have a notional value (Price × Quantity) of at least 100 USDT. We use `0.003` here because `50,000 * 0.003 = 150`.*
+*Note: Binance Futures requires a minimum notional value (Price × Quantity), typically ≥ 100 USDT. We use `0.003` here because `50,000 * 0.003 = 150`.*
 ```bash
 python cli.py place-order --symbol BTCUSDT --side SELL --type STOP_MARKET --quantity 0.003 --stop-price 50000
+```
+
+## Sample Output
+
+```text
+Success! Order placed successfully on Binance Futures Testnet.
+        Order Summary         
++----------------------------+
+| Property     | Value       |
+|--------------+-------------|
+| Symbol       | BTCUSDT     |
+| Side         | BUY         |
+| Type         | MARKET      |
+| Order ID     | 13095872880 |
+| Status       | NEW         |
+| Executed Qty | 0.0000      |
+| Avg Price    | 0.00        |
++----------------------------+
 ```
 
 ## Logs
