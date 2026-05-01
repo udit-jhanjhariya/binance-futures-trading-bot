@@ -60,18 +60,18 @@ python cli.py place-order --symbol BTCUSDT --side SELL --type STOP_MARKET --quan
 
 ```text
 Success! Order placed successfully on Binance Futures Testnet.
-        Order Summary         
-+----------------------------+
-| Property     | Value       |
-|--------------+-------------|
-| Symbol       | BTCUSDT     |
-| Side         | BUY         |
-| Type         | MARKET      |
-| Order ID     | 13095872880 |
-| Status       | NEW         |
-| Executed Qty | 0.0000      |
-| Avg Price    | 0.00        |
-+----------------------------+
+        Order Summary
+┏━━━━━━━━━━━━━━┳━━━━━━━━━━━━━┓
+┃ Property     ┃ Value       ┃
+┡━━━━━━━━━━━━━━╇━━━━━━━━━━━━━┩
+│ Symbol       │ BTCUSDT     │
+│ Side         │ BUY         │
+│ Type         │ MARKET      │
+│ Order ID     │ 13095885048 │
+│ Status       │ NEW         │
+│ Executed Qty │ 0.0000      │
+│ Avg Price    │ 0.00        │
+└──────────────┴─────────────┘
 ```
 
 ## Logs
