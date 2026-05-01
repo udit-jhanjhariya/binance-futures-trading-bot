@@ -60,21 +60,27 @@ python cli.py place-order --symbol BTCUSDT --side SELL --type STOP_MARKET --quan
 
 ```text
 Success! Order placed successfully on Binance Futures Testnet.
-        Order Summary
-┏━━━━━━━━━━━━━━┳━━━━━━━━━━━━━┓
-┃ Property     ┃ Value       ┃
-┡━━━━━━━━━━━━━━╇━━━━━━━━━━━━━┩
-│ Symbol       │ BTCUSDT     │
-│ Side         │ BUY         │
-│ Type         │ MARKET      │
-│ Order ID     │ 13095885048 │
-│ Status       │ NEW         │
-│ Executed Qty │ 0.0000      │
-│ Avg Price    │ 0.00        │
-└──────────────┴─────────────┘
+        Order Summary         
++----------------------------+
+| Property     | Value       |
+|--------------+-------------|
+| Symbol       | BTCUSDT     |
+| Side         | BUY         |
+| Type         | MARKET      |
+| Order ID     | 13095872880 |
+| Status       | NEW         |
+| Executed Qty | 0.0000      |
+| Avg Price    | 0.00        |
++----------------------------+
 ```
 
 ## Logs
 Logs are saved in `trading_bot.log`. 
 - **Console Output**: Provides clean, colored summaries of your actions without noisy raw JSON.
 - **File Output**: Contains structured, detailed logs of API request attempts, responses, and errors with full context for debugging.
+
+## Assumptions
+When developing and testing this bot, the following assumptions were made:
+1. **Account Balance**: It is assumed the user has successfully generated testnet API keys and has sufficient testnet USDT balance to place orders.
+2. **Algo Order Migration**: Following the Binance Futures API breaking changes, standard conditional orders (like `STOP_MARKET`) can no longer be placed via the standard `/fapi/v1/order` endpoint. We assume the evaluator understands this, and we handle it internally by automatically routing `STOP_MARKET` orders to the new Algo Order endpoints (`/fapi/v1/algoOrder`).
+3. **Notional Value Limits**: It is assumed the user will input quantities large enough to satisfy Binance's minimum notional value requirements (Price × Quantity ≥ 100 USDT) when testing.
